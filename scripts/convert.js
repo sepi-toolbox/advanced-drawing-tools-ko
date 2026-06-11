@@ -5,10 +5,11 @@ import { MODULE_NAME } from "./const.js";
         return;
     }
 
-    return await (confirm ? Dialog.confirm({
-        title: `${MODULE_NAME}: Convert Drawing to Polygon`,
-        content: `<p>Permanently convert this Drawing to a Polygon?</p>`,
-        defaultYes: false
+    return await (confirm ? foundry.applications.api.DialogV2.confirm({
+        window: { title: `${MODULE_NAME}: 그리기를 다각형으로 변환` },
+        content: `<p>이 그리기를 영구적으로 다각형으로 변환할까요?</p>`,
+        rejectClose: false,
+        modal: true
     }) : Promise.resolve()).then(async result => {
         if (!result) {
             return;

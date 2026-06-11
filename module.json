@@ -1,7 +1,7 @@
 {
   "id": "advanced-drawing-tools",
-  "title": "Advanced Drawing Tools",
-  "description": "Improved drawing tools with additional line, fill, and text styles.",
+  "title": "Advanced Drawing Tools (한국어)",
+  "description": "추가적인 선·채우기·텍스트 스타일을 제공하는 향상된 그리기 도구 — 한국어 번역본 (Foundry VTT v14 호환).",
   "authors": [
     {
       "name": "dev7355608",
@@ -12,10 +12,10 @@
       "email": "admin@dawid-izydor.pl"
     }
   ],
-  "version": "3.1.0",
+  "version": "3.1.1",
   "compatibility": {
     "minimum": "13",
-    "verified": "13"
+    "verified": "14"
   },
   "esmodules": [
     "scripts/index.js"
@@ -28,11 +28,10 @@
       }
     ]
   },
-  "url": "https://github.com/DawidIzydor/advanced-drawing-tools",
-  "manifest": "https://raw.githubusercontent.com/DawidIzydor/advanced-drawing-tools/main/module.json",
-  "download": "https://github.com/DawidIzydor/advanced-drawing-tools/releases/download/3.1.0/module.zip",
-  "changelog": "https://github.com/DawidIzydor/advanced-drawing-tools/releases/tag/3.1.0",
+  "url": "https://github.com/sepi-toolbox/advanced-drawing-tools-ko",
+  "manifest": "https://raw.githubusercontent.com/sepi-toolbox/advanced-drawing-tools-ko/main/module.json",
+  "download": "https://github.com/sepi-toolbox/advanced-drawing-tools-ko/archive/refs/heads/main.zip",
   "bugs": "https://github.com/DawidIzydor/advanced-drawing-tools/issues",
-  "readme": "https://raw.githubusercontent.com/DawidIzydor/advanced-drawing-tools/main/README.md",
-  "license": "https://raw.githubusercontent.com/DawidIzydor/advanced-drawing-tools/main/LICENSE"
+  "readme": "https://raw.githubusercontent.com/sepi-toolbox/advanced-drawing-tools-ko/main/README.md",
+  "license": "https://raw.githubusercontent.com/sepi-toolbox/advanced-drawing-tools-ko/main/LICENSE"
 }

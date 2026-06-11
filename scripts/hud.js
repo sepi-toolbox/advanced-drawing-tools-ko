@@ -15,7 +15,7 @@ Hooks.on("renderDrawingHUD", (hud, root) => {
         edit.classList.add("active");
     }
 
-    edit.setAttribute("title", "Edit");
+    edit.setAttribute("title", "편집");
     edit.dataset.action = `${MODULE_ID}.edit`;
     edit.innerHTML = `<i class="fas fa-draw-polygon"></i>`;
 
@@ -46,7 +46,7 @@ Hooks.on("renderDrawingHUD", (hud, root) => {
         const flipH = document.createElement("div");
 
         flipH.classList.add("control-icon");
-        flipH.setAttribute("title", "Flip horizontally");
+        flipH.setAttribute("title", "좌우 반전");
         flipH.dataset.action = `${MODULE_ID}.flip-h`;
         flipH.innerHTML = `<i class="fas fa-arrows-alt-h"></i>`;
 
@@ -77,7 +77,7 @@ Hooks.on("renderDrawingHUD", (hud, root) => {
         const flipV = document.createElement("div");
 
         flipV.classList.add("control-icon");
-        flipV.setAttribute("title", "Flip vertically");
+        flipV.setAttribute("title", "상하 반전");
         flipV.dataset.action = `${MODULE_ID}.flip-v`;
         flipV.innerHTML = `<i class="fas fa-arrows-alt-v"></i>`;
 
@@ -110,22 +110,12 @@ Hooks.on("renderDrawingHUD", (hud, root) => {
 async function unlockDrawing(hud) {
     return await new Promise(resolve => {
         if (hud.object.document.locked) {
-            new Dialog({
-                title: `${MODULE_NAME}: Unlock Drawing`,
-                content: `<p>Unlock this Drawing?</p>`,
-                buttons: {
-                    yes: {
-                        icon: '<i class="fas fa-check"></i>',
-                        label: "Yes",
-                        callback: () => resolve(true)
-                    },
-                    no: {
-                        icon: '<i class="fas fa-times"></i>',
-                        label: "No",
-                        callback: () => resolve(false)
-                    },
-                },
-            }).render(true);
+            foundry.applications.api.DialogV2.confirm({
+                window: { title: `${MODULE_NAME}: 그리기 잠금 해제` },
+                content: `<p>이 그리기의 잠금을 해제할까요?</p>`,
+                rejectClose: false,
+                modal: true
+            }).then(result => resolve(result));
         } else {
             resolve(false);
         }

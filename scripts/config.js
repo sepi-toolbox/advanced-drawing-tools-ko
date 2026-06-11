@@ -340,11 +340,11 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
 
     $.find(`.tab[data-tab="position"]`).append(`
         <div class="form-group">
-            <label>Invisible</label>
+            <label>투명</label>
             <div class="form-fields">
                 <input type="checkbox" name="flags.${MODULE_ID}.invisible" ${document.getFlag(MODULE_ID, "invisible") ? "checked" : ""}>
             </div>
-            <p class="notes">Invisible drawings are visible to their authors and GMs if the drawings layer is active. Otherwise they are not visible to anyone.</p>
+            <p class="notes">투명 그리기는 그리기 레이어가 활성화되어 있을 때 작성자와 GM에게만 보입니다. 그 외에는 누구에게도 보이지 않습니다.</p>
         </div>
     `);
 
@@ -354,11 +354,11 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
 
     $.find(`input[name="strokeWidth"]`).closest(".form-group").after(`
         <div class="form-group">
-            <label>Dashed <span class="units">(Pixels)</span></label>
+            <label>파선 <span class="units">(픽셀)</span></label>
             <div class="form-fields">
-                <label>Dash</label>
+                <label>선</label>
                 <input type="number" name="flags.${MODULE_ID}.lineStyle.dash" min="0.1" step="0.1" placeholder="8" value="${ls.dash?.[0] ?? "8"}">
-                <label>Gap</label>
+                <label>간격</label>
                 <input type="number" name="flags.${MODULE_ID}.lineStyle.dash" min="0.1" step="0.1" placeholder="5" value="${ls.dash?.[1] ?? "5"}">
                 &nbsp;&nbsp;&nbsp;
                 <input type="checkbox" name="flags.${MODULE_ID}.lineStyle.dashEnabled" class="${MODULE_ID}--lineStyle-dash" ${ls.dash ? "checked" : ""}>
@@ -368,34 +368,34 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
 
     $.find(`div[data-tab="fill"]`).append(`
         <div class="form-group">
-            <label>Texture Size <span class="units">(Pixels or %)</span></label>
+            <label>텍스처 크기 <span class="units">(픽셀 또는 %)</span></label>
             <div class="form-fields">
                 <label>X</label>
-                <input type="text" name="flags.${MODULE_ID}.fillStyle.texture.width" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="Width" value="${stringifyValue(fs.texture?.width) ?? ""}">
+                <input type="text" name="flags.${MODULE_ID}.fillStyle.texture.width" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="너비" value="${stringifyValue(fs.texture?.width) ?? ""}">
                 <label>Y</label>
-                <input type="text" name="flags.${MODULE_ID}.fillStyle.texture.height" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="Height" value="${stringifyValue(fs.texture?.height) ?? ""}">
+                <input type="text" name="flags.${MODULE_ID}.fillStyle.texture.height" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="높이" value="${stringifyValue(fs.texture?.height) ?? ""}">
             </div>
         </div>
         <div class="form-group">
-            <label>Texture Position <span class="units">(Pixels or %)</span></label>
+            <label>텍스처 위치 <span class="units">(픽셀 또는 %)</span></label>
             <div class="form-fields">
                 <label>X</label>
-                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.position.x" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.position?.x) ?? "0px"}">
+                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.position.x" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.position?.x) ?? "0px"}">
                 <label>Y</label>
-                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.position.y" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.position?.y) ?? "0px"}">
+                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.position.y" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.position?.y) ?? "0px"}">
             </div>
         </div>
         <div class="form-group">
-            <label>Texture Pivot <span class="units">(Pixels or %)</span></label>
+            <label>텍스처 피벗 <span class="units">(픽셀 또는 %)</span></label>
             <div class="form-fields">
                 <label>X</label>
-                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.pivot.x" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.pivot?.x) ?? "0px"}">
+                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.pivot.x" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.pivot?.x) ?? "0px"}">
                 <label>Y</label>
-                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.pivot.y" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.pivot?.y) ?? "0px"}">
+                <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.pivot.y" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="0px" value="${stringifyValue(fs.transform?.pivot?.y) ?? "0px"}">
             </div>
         </div>
         <div class="form-group">
-            <label>Texture Scale</label>
+            <label>텍스처 배율</label>
             <div class="form-fields">
                 <label>X</label>
                 <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.scale.x" data-dtype="Number" placeholder="1" value="${fs.transform?.scale?.x ?? "1"}">
@@ -404,11 +404,11 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
             </div>
         </div>
         <div class="form-group">
-            <label>Texture Rotation <span class="units">(Degrees)</span></label>
+            <label>텍스처 회전 <span class="units">(도)</span></label>
             <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.rotation" data-dtype="Number" placeholder="0" value="${fs.transform?.rotation ?? "0"}">
         </div>
         <div class="form-group">
-            <label>Texture Skew <span class="units">(Degrees)</span></label>
+            <label>텍스처 기울이기 <span class="units">(도)</span></label>
             <div class="form-fields">
                 <label>X</label>
                 <input type="text" name="flags.${MODULE_ID}.fillStyle.transform.skew.x" data-dtype="Number" placeholder="0" value="${fs.transform?.skew?.x ?? "0"}">
@@ -420,27 +420,27 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
 
     $.find(`select[name="fontFamily"]`).closest(".form-group").after(`
         <div class="form-group">
-            <label>Font Style</label>
+            <label>글꼴 스타일</label>
             <select name="flags.${MODULE_ID}.textStyle.fontStyle">
-                <option value="normal" ${ts.fontStyle === "normal" || ts.fontStyle == null ? "selected" : ""}>Normal</option>
-                <option value="italic" ${ts.fontStyle === "italic" ? "selected" : ""}>Italic</option>
-                <option value="oblique" ${ts.fontStyle === "oblique" ? "selected" : ""}>Oblique</option>
+                <option value="normal" ${ts.fontStyle === "normal" || ts.fontStyle == null ? "selected" : ""}>보통</option>
+                <option value="italic" ${ts.fontStyle === "italic" ? "selected" : ""}>이탤릭</option>
+                <option value="oblique" ${ts.fontStyle === "oblique" ? "selected" : ""}>오블리크</option>
             </select>
         </div>
         <div class="form-group">
-            <label>Font Variant</label>
+            <label>글꼴 변형</label>
             <select name="flags.${MODULE_ID}.textStyle.fontVariant">
-                <option value="normal" ${ts.fontVariant === "normal" || ts.fontVariant == null ? "selected" : ""}>Normal</option>
-                <option value="small-caps" ${ts.fontVariant === "small-caps" ? "selected" : ""}>Small Caps</option>
+                <option value="normal" ${ts.fontVariant === "normal" || ts.fontVariant == null ? "selected" : ""}>보통</option>
+                <option value="small-caps" ${ts.fontVariant === "small-caps" ? "selected" : ""}>작은 대문자</option>
             </select>
         </div>
         <div class="form-group">
-            <label>Font Weight</label>
+            <label>글꼴 굵기</label>
             <select name="flags.${MODULE_ID}.textStyle.fontWeight">
-                <option value="normal" ${ts.fontWeight === "normal" || ts.fontWeight == null ? "selected" : ""}>Normal</option>
-                <option value="bold" ${ts.fontWeight === "bold" ? "selected" : ""}>Bold</option>
-                <option value="bolder" ${ts.fontWeight === "bolder" ? "selected" : ""}>Bolder</option>
-                <option value="lighter" ${ts.fontWeight === "lighter" ? "selected" : ""}>Lighter</option>
+                <option value="normal" ${ts.fontWeight === "normal" || ts.fontWeight == null ? "selected" : ""}>보통</option>
+                <option value="bold" ${ts.fontWeight === "bold" ? "selected" : ""}>굵게</option>
+                <option value="bolder" ${ts.fontWeight === "bolder" ? "selected" : ""}>더 굵게</option>
+                <option value="lighter" ${ts.fontWeight === "lighter" ? "selected" : ""}>더 가늘게</option>
                 <option value="100" ${ts.fontWeight === "100" ? "selected" : ""}>100</option>
                 <option value="200" ${ts.fontWeight === "200" ? "selected" : ""}>200</option>
                 <option value="300" ${ts.fontWeight === "300" ? "selected" : ""}>300</option>
@@ -462,29 +462,29 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
     
     fontSizeElement.closest(".form-group").after(`
         <div class="form-group">
-            <label>Leading <span class="units">(Pixels)</span></label>
+            <label>행간(Leading) <span class="units">(픽셀)</span></label>
             <input type="number" name="flags.${MODULE_ID}.textStyle.leading" min="0" step="0.1" placeholder="0" value="${ts.leading ?? "0"}">
         </div>
         <div class="form-group">
-            <label>Letter Spacing <span class="units">(Pixels)</span></label>
+            <label>자간 <span class="units">(픽셀)</span></label>
             <input type="number" name="flags.${MODULE_ID}.textStyle.letterSpacing" min="0" step="0.1" placeholder="0" value="${ts.letterSpacing ?? "0"}">
         </div>
         <div class="form-group">
-            <label>Line Height <span class="units">(Pixels)</span></label>
+            <label>줄 높이 <span class="units">(픽셀)</span></label>
             <input type="number" name="flags.${MODULE_ID}.textStyle.lineHeight" min="0" step="0.1" placeholder="normal" value="${ts.lineHeight ?? "normal"}">
-        </div> 
+        </div>
         <div class="form-group">
-            <label>Word Wrap Width <span class="units">(Pixels or %)</span></label>
-            <input type="text" name="flags.${MODULE_ID}.textStyle.wordWrapWidth" title="Pixels (px) or Percent (%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="100%" value="${stringifyValue(ts.wordWrapWidth) ?? "100%"}">
+            <label>자동 줄바꿈 너비 <span class="units">(픽셀 또는 %)</span></label>
+            <input type="text" name="flags.${MODULE_ID}.textStyle.wordWrapWidth" title="픽셀(px) 또는 백분율(%)" pattern="\\s*(\\d*\\.?\\d+)\\s*(px|%)?\\s*" placeholder="100%" value="${stringifyValue(ts.wordWrapWidth) ?? "100%"}">
         </div>
     `);
 
     $.find(`input[name="textColor"]`).closest(".form-fields").append(`
         &nbsp;
-        <input type="number" name="flags.${MODULE_ID}.textStyle.fillGradientStops" min="0" max="1" step="0.001" placeholder="" title="Color Stop" value="${ts?.fillGradientStops?.[0] ?? ""}">
+        <input type="number" name="flags.${MODULE_ID}.textStyle.fillGradientStops" min="0" max="1" step="0.001" placeholder="" title="색상 정지점" value="${ts?.fillGradientStops?.[0] ?? ""}">
         &nbsp;
-        <a title="Add Color" class="${MODULE_ID}--textStyle-fill--add" style="flex: 0;"><i class="fas fa-plus fa-fw" style="margin: 0;"></i></a>
-        <a title="Remove Color" class="${MODULE_ID}--textStyle-fill--remove" style="flex: 0;"><i class="fas fa-minus fa-fw" style="margin: 0;"></i></a>
+        <a title="색상 추가" class="${MODULE_ID}--textStyle-fill--add" style="flex: 0;"><i class="fas fa-plus fa-fw" style="margin: 0;"></i></a>
+        <a title="색상 제거" class="${MODULE_ID}--textStyle-fill--remove" style="flex: 0;"><i class="fas fa-minus fa-fw" style="margin: 0;"></i></a>
     `);
     
     $.find(`a[class="${MODULE_ID}--textStyle-fill--add"]`).click(event => {
@@ -514,10 +514,10 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
                     <input class="color" type="text" name="flags.${MODULE_ID}.textStyle.fill" value="${fill || "#ffffff"}">
                     <input type="color" data-edit="" value="${fill || "#ffffff"}">
                     &nbsp;
-                    <input type="number" name="flags.${MODULE_ID}.textStyle.fillGradientStops" min="0" max="1" step="0.001" placeholder="" title="Color Stop" value="${stop ?? ""}">
+                    <input type="number" name="flags.${MODULE_ID}.textStyle.fillGradientStops" min="0" max="1" step="0.001" placeholder="" title="색상 정지점" value="${stop ?? ""}">
                     &nbsp;
-                    <a title="Add Color" style="flex: 0;"><i class="fas fa-plus fa-fw" style="margin: 0;"></i></a>
-                    <a title="Remove Color" style="flex: 0;"><i class="fas fa-minus fa-fw" style="margin: 0;"></i></a>
+                    <a title="색상 추가" style="flex: 0;"><i class="fas fa-plus fa-fw" style="margin: 0;"></i></a>
+                    <a title="색상 제거" style="flex: 0;"><i class="fas fa-minus fa-fw" style="margin: 0;"></i></a>
                 </div>
             </div>
         `;
@@ -581,26 +581,26 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
     
     textAlphaElement.closest(".form-group").before(`
         <div class="form-group">
-            <label>Text Color Gradient</label>
+            <label>텍스트 색상 그라데이션</label>
             <select name="flags.${MODULE_ID}.textStyle.fillGradientType" data-dtype="Number">
-                <option value="0" ${ts.fillGradientType === 0 || ts.fillGradientType == null ? "selected" : ""}>Vertical</option>
-                <option value="1" ${ts.fillGradientType === 1 ? "selected" : ""}>Horizontal</option>
+                <option value="0" ${ts.fillGradientType === 0 || ts.fillGradientType == null ? "selected" : ""}>수직</option>
+                <option value="1" ${ts.fillGradientType === 1 ? "selected" : ""}>수평</option>
             </select>
         </div>
     `);
 
     textAlphaElement.closest(".form-group").after(`
         <div class="form-group">
-            <label>Text Alignment</label>
+            <label>텍스트 정렬</label>
             <select name="flags.${MODULE_ID}.textStyle.align">
-                <option value="" ${ts.align == null ? "selected" : ""}>Default</option>
-                <option value="left" ${ts.align === "left" || ts.align === "justify" ? "selected" : ""}>Left</option>
-                <option value="center" ${ts.align === "center" ? "selected" : ""}>Center</option>
-                <option value="right" ${ts.align === "right" ? "selected" : ""}>Right</option>
+                <option value="" ${ts.align == null ? "selected" : ""}>기본값</option>
+                <option value="left" ${ts.align === "left" || ts.align === "justify" ? "selected" : ""}>왼쪽</option>
+                <option value="center" ${ts.align === "center" ? "selected" : ""}>가운데</option>
+                <option value="right" ${ts.align === "right" ? "selected" : ""}>오른쪽</option>
             </select>
         </div>
         <div class="form-group">
-            <label>Stroke Color</label>
+            <label>외곽선 색상</label>
             <div class="form-fields">
                 <color-picker name="flags.${MODULE_ID}.textStyle.stroke" placeholder="" value="${ts.stroke || ""}">
                     <input type="text" placeholder="">
@@ -609,11 +609,11 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
             </div>
         </div>
         <div class="form-group">
-            <label>Stroke Thickness <span class="units">(Pixels)</span></label>
-            <input type="number" name="flags.${MODULE_ID}.textStyle.strokeThickness" min="0" step="0.1" placeholder="Default" value="${ts.strokeThickness ?? ""}">
+            <label>외곽선 두께 <span class="units">(픽셀)</span></label>
+            <input type="number" name="flags.${MODULE_ID}.textStyle.strokeThickness" min="0" step="0.1" placeholder="기본값" value="${ts.strokeThickness ?? ""}">
         </div>
         <div class="form-group">
-            <label>Stroke Opacity</label>
+            <label>외곽선 불투명도</label>
             <div class="form-fields">
                 <range-picker name="flags.${MODULE_ID}.textStyle.strokeOpacity" value="${ts.strokeOpacity ?? "1"}" min="0" max="1" step="0.1">
                     <input type="range" min="0" max="1" step="0.1" style="">
@@ -622,23 +622,23 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
             </div>
         </div>
         <div class="form-group">
-            <label>Drop Shadow</label>
+            <label>그림자</label>
             <input type="checkbox" name="flags.${MODULE_ID}.textStyle.dropShadow" ${(ts.dropShadow ?? true) ? "checked" : ""}>
         </div>
         <div class="form-group">
-            <label>Drop Shadow Blur <span class="units">(Pixels)</span></label>
-            <input type="number" name="flags.${MODULE_ID}.textStyle.dropShadowBlur" min="0" step="0.1" placeholder="Default" value="${ts.dropShadowBlur ?? ""}">
+            <label>그림자 흐림 <span class="units">(픽셀)</span></label>
+            <input type="number" name="flags.${MODULE_ID}.textStyle.dropShadowBlur" min="0" step="0.1" placeholder="기본값" value="${ts.dropShadowBlur ?? ""}">
         </div>
         <div class="form-group">
-            <label>Drop Shadow Distance <span class="units">(Pixels)</span></label>
+            <label>그림자 거리 <span class="units">(픽셀)</span></label>
             <input type="number" name="flags.${MODULE_ID}.textStyle.dropShadowDistance" min="0" step="0.1" placeholder="0" value="${ts.dropShadowDistance ?? "0"}">
         </div>
         <div class="form-group">
-            <label>Drop Shadow Angle <span class="units">(Degrees)</span></label>
+            <label>그림자 각도 <span class="units">(도)</span></label>
             <input type="number" name="flags.${MODULE_ID}.textStyle.dropShadowAngle" step="0.1" placeholder="0" value="${ts.dropShadowAngle ?? "0"}">
         </div>
         <div class="form-group">
-            <label>Drop Shadow Color</label>
+            <label>그림자 색상</label>
             <div class="form-fields">
                 <color-picker name="flags.${MODULE_ID}.textStyle.dropShadowColor" placeholder="#000000" value="${ts.dropShadowColor || "#000000"}">
                     <input type="text" placeholder="#000000">
@@ -647,7 +647,7 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
             </div>
         </div>
         <div class="form-group">
-            <label>Drop Shadow Alpha</label>
+            <label>그림자 투명도</label>
             <div class="form-fields">
                 <range-picker name="flags.${MODULE_ID}.textStyle.dropShadowAlpha" value="${ts.dropShadowAlpha ?? "1"}" min="0" max="1" step="0.1">
                     <input type="range" min="0" max="1" step="0.1" style="">
@@ -656,7 +656,7 @@ Hooks.on("renderDrawingConfig", (app, root, data) => {
             </div>
         </div>
         <div class="form-group">
-            <label>Arc <span class="units">(Degrees)</span></label>
+            <label>호(Arc) <span class="units">(도)</span></label>
             <input type="number" name="flags.${MODULE_ID}.textStyle.arc" step="0.1" min="-360" max="360" placeholder="0" value="${ts.arc ?? "0"}">
         </div>
     `);
