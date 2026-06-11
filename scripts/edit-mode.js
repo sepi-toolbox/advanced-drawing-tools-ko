@@ -12,15 +12,27 @@ Hooks.once("libWrapper.Ready", () => {
     const refreshSize = (drawing) => drawing.renderFlags.set({ refreshSize: true });
     const isDraggingHandle = (drawing, event) => event.interactionData.dragHandle;
 
+    // Foundry v14에서 Drawing의 일부 상호작용/핸들 내부 메서드(_onHandle* 등)가 제거/변경됨.
+    // 대상이 없으면 libWrapper.register가 throw → init 전체가 중단되어 모듈이 로드 실패한다.
+    // 각 래핑을 개별 try/catch로 감싸, 사라진 대상만 건너뛰고 나머지는 정상 등록되게 한다.
+    // (이 경우 폴리곤 꼭짓점 편집 모드는 v14에서 동작하지 않을 수 있음 — 핵심 기능은 정상)
+    const safeRegister = (target, fn, type) => {
+        try {
+            libWrapper.register(MODULE_ID, target, fn, type);
+        } catch (err) {
+            console.warn(`${MODULE_ID} | 래핑 건너뜀 (Foundry v14+에서 제거/변경된 대상): ${target} — ${err.message}`);
+        }
+    };
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype.activateListeners`, function (wrapped, ...args) {
+
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype.activateListeners`, function (wrapped, ...args) {
         wrapped(...args);
 
         this.frame.handle.off("pointerup").on("pointerup", this._onHandleMouseUp.bind(this));
     }, libWrapper.WRAPPER);
     
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onHandleHoverIn`, function (event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onHandleHoverIn`, function (event) {
         if (this._dragHandle) {
             return;
         }
@@ -40,7 +52,7 @@ Hooks.once("libWrapper.Ready", () => {
         }
     }, libWrapper.OVERRIDE);
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onHandleHoverOut`, function (event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onHandleHoverOut`, function (event) {
         const handle = getInteractionData(event).handle;
 
         if (handle instanceof PointHandle || handle instanceof EdgeHandle) {
@@ -52,7 +64,7 @@ Hooks.once("libWrapper.Ready", () => {
     }, libWrapper.OVERRIDE);
 
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onHandleDragStart`, function (event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onHandleDragStart`, function (event) {
         const handle = event.target;
 
         if (handle instanceof PointHandle || handle instanceof EdgeHandle) {
@@ -72,7 +84,7 @@ Hooks.once("libWrapper.Ready", () => {
     }, libWrapper.OVERRIDE);
     
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onDragLeftStart`, function (wrapped, event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onDragLeftStart`, function (wrapped, event) {
         if (!isDraggingHandle(this, event)) {
             return wrapped(event);
         }
@@ -109,7 +121,7 @@ Hooks.once("libWrapper.Ready", () => {
         }
     }, libWrapper.MIXED);
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onHandleDragMove`, function (event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onHandleDragMove`, function (event) {
         let { handle, destination, origin } = getInteractionData(event);
 
         if (this._editHandle) {
@@ -158,7 +170,7 @@ Hooks.once("libWrapper.Ready", () => {
         } catch (err) { }
     }, libWrapper.OVERRIDE);
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onHandleDragDrop`, function (event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onHandleDragDrop`, function (event) {
         let { handle, destination, origin } = getInteractionData(event);
 
         if (this._editHandle) {
@@ -211,7 +223,7 @@ Hooks.once("libWrapper.Ready", () => {
     }, libWrapper.OVERRIDE);
 
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onClickLeft`, function (wrapped, event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onClickLeft`, function (wrapped, event) {
         this._editHandle = null;
 
         if (this._editHandles?.points.children.includes(event.target)
@@ -226,7 +238,7 @@ Hooks.once("libWrapper.Ready", () => {
     }, libWrapper.MIXED);
     
 
-    libWrapper.register(MODULE_ID, `foundry.canvas.placeables.Drawing.prototype._onClickRight`, function (wrapped, event) {
+    safeRegister(`foundry.canvas.placeables.Drawing.prototype._onClickRight`, function (wrapped, event) {
         let handle = getInteractionData(event).handle;
 
         if (this._editHandle) {
